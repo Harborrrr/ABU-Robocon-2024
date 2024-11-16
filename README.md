@@ -1,30 +1,40 @@
-# RC2024
+# ROBOCON 2024
 
 ## Description
 
-This repository contains the Vision Group's code for the RC2024 season, developed by the RC Division of the SPR Robotics Association at China University of Petroleum, Beijing.
+This repository contains the RC2024 code from the **CV Algorithm Group**, part of the **Robocon Division** under the **SPR Robotics Association** at **China University of Petroleum-Beijing**.
 
-During the internal development phase, we used [Gitee] for version control. The repository has now been synchronized to [Github](https://github.com/harbourrrr/ABU-Robocon-2024). For historical versions, please refer to the Gitee repository (note that these versions are outdated and no longer maintained).
+### Competition Rules
 
-The hardware used in this project includes:
-- Two Orbbec Astra Pro cameras
-- Two MindVision industrial cameras
-- One USB to RS485 converter
+The RC2024 competition challenges teams to design fully autonomous robots capable of completing tasks such as picking up specified colored balls and strategically placing them into five frames, each holding up to 3 balls.
 
-**This project is based on the YOLOv5 model, utilizing OpenVINO for accelerated inference on the integrated GPU. For decision-making, Q-learning reinforcement learning is employed.**
+### Winning Condition
 
-### Project Environment
+A team wins if **any 3 frames** satisfy the following criteria:  
+1. The frame is full (3 balls).  
+2. At least **2 balls** in the frame are of the team's color.  
+3. The **top ball** matches the team's color.
 
-- **Python version**: 3.9.x
+---
 
-- **Ubuntu version**: 22.04
+## Hardware and Environment Specifications
 
-### Core Files
+| **Component**      | **Details**                            |
+|---------------------|----------------------------------------|
+| **Cameras**         | 2x Orbbec Astra Pro, 2x MindVision    |
+| **Converter**       | USB-to-RS485                          |
+| **Python version**  | 3.9.x                                 |
+| **OS**              | Ubuntu 22.04                          |
 
-- `/newmain.py`: Main program entry point
-- `/Utils/tools.py`: Library, classes, and utility functions
-- `/Utils/new_vino/new_vinodetect.py`: YOLOv5 inference network accelerated with OpenVINO
-- `/Utils/policy`: Silo decision-making based on Q-learning reinforcement learning
+
+## Core Files
+
+- `/newmain.py`: Main program entry point.  
+- `/Utils/tools.py`: Library of utility functions and classes.  
+- `/Utils/new_vino/new_vinodetect.py`: YOLOv5 inference module, accelerated with OpenVINO.  
+- `/Utils/policy`: Reinforcement learning module for decision-making, based on TD learning.
+
+---
 
 ## Project Structure
 
@@ -39,7 +49,7 @@ The hardware used in this project includes:
 │   ├── tools.py                # Utility functions
 │   ├── new_vino
 │   │   └── new_vinodetect.py   # YOLOv5 inference network accelerated with OpenVINO
-│   └── policy                  # Silo decision-making based on Q-learning reinforcement learning
+│   └── policy                  # Decision-making based on TD learning
 │       ├── main.py             # Decision-making entry point
 │       ├── generate_states.py  # State generation        
 │       ├── test.py             # Simulation testing
@@ -49,43 +59,44 @@ The hardware used in this project includes:
 ├── test.py                     # Test script
 └── testmain.py                 # Test script
 ```
+## Usage Instructions
 
-## Usage Instructions and Notes
+1. Ensure all required hardware (cameras, serial ports, etc.) is connected for the project to function properly.  
+2. Install dependencies using `requirements.txt` and additional software:  
+   - [OpenVINO Toolkit](https://github.com/openvinotoolkit/openvino).  
+   - [Orbbec drivers and OpenNI2 library](https://vcp.developer.orbbec.com.cn/resourceCenter).  
+   - [MindVision drivers](https://www.mindvision.com.cn/category/software/).  
+3. The policy model includes a file larger than 100MB (`/Utils/policy/models/all_states.pickle`), so **Git LFS** is required to pull it correctly. Install Git LFS using [these instructions](https://git-lfs.github.com/).  
 
-1. Since this project involves cameras, serial ports, and other hardware, it must be connected to all the hardware to run correctly.
-
-2. In addition to the configuration file `requirements.txt`, you also need to [install the OpenVINO toolkit](https://github.com/openvinotoolkit/openvino).
-
-3. [Orbbec drivers and OpenNI2 library](https://vcp.developer.orbbec.com.cn/resourceCenter).
-
-4. [MindVision drivers](https://www.mindvision.com.cn/category/software/).
-
-5. Since the policy model includes a file larger than 100MB (`/Utils/policy/models/all_states.pickle`), Git LFS is used for storage. You need to install Git LFS to pull it correctly. [Installation instructions](https://git-lfs.github.com/).
+---
 
 ## Open Source License
 
-This project is licensed under the MIT License. For more details, please refer to the LICENSE file.
+This project is licensed under the **MIT License**. For more details, refer to the `LICENSE` file.
+
+---
 
 ## Authors
 
-- **Harbor Liu**
-- **Cion Huang**
+- **Harbor Liu**  
+- **Cion Huang**  
 
-### Contributors
+---
 
-Additionally, we would like to thank the new team members who joined during the RC2024 season for their contributions to program debugging, model training, and other processes:
+## Contributors
 
-- **ZhaoYun wu**
-- **Jiaheng Fan**
+We would like to thank the following team members for their significant contributions during the RC2024 season, including debugging, model training, and other critical tasks:
+
+- **ZhaoYun Wu**  
+- **Jiaheng Fan**  
+
+---
 
 ## Contact
 
-For any questions or inquiries, please contact us at:
+For questions or inquiries, feel free to reach out to us:  
 
-- **Harbor Liu**: harbourrr123@gmail.com
+- **Harbor Liu**: [harbourrr123@gmail.com]
+- **Cion Huang**: [cionhuang124@gmail.com] 
 
-- Feel free to reach out if you have any questions about the project.
-
-
-
-
+We’re happy to assist with any questions about the project!
